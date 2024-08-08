@@ -22,11 +22,12 @@ public class TodoController {
         return todoService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<task> getTodoById(@PathVariable Long id) {
-        return todoService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping(value = {"/{id}", "/{name}"})
+    public task getTodo(@PathVariable Long id, @PathVariable String name) {
+        if (id == 0) {
+            return todoService.findByTitle(name);
+        }
+        return todoService.findById(id).get();
     }
 
     @PostMapping("/create")
@@ -53,13 +54,11 @@ public class TodoController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTodoById(@PathVariable Long id) {
-        if (todoService.findById(id).isPresent()) {
-            todoService.deleteById(id);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
+    @DeleteMapping(value = {"/{id}", "/{title}"})
+    public void deleteTodoByName(@PathVariable String title, @PathVariable Long id) {
+        if (id == 0) {
+            todoService.deleteByTitle(title);
         }
+        todoService.deleteById(id);
     }
 }

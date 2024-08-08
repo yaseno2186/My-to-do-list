@@ -1,8 +1,6 @@
 package dev.Yass.to_do_list.service;
 
-import dev.Yass.to_do_list.model.Categories;
 import dev.Yass.to_do_list.model.task;
-import dev.Yass.to_do_list.repository.CategoryRepository;
 import dev.Yass.to_do_list.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,10 @@ public class TodoService {
         return todoRepository.findById(id);
     }
 
+    public task findByTitle(String title) {
+        return (task) todoRepository.findByTitle(title);
+    }
+
     public List<task> findAll() {
         return todoRepository.findAll();
     }
@@ -31,6 +33,10 @@ public class TodoService {
 
     public void deleteById(Long id) {
         todoRepository.deleteById(id);
+    }
+
+    public void deleteByTitle(String title) {
+        todoRepository.deleteByTitle(title);
     }
 
 

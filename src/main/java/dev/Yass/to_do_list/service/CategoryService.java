@@ -26,8 +26,16 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public Categories findByName(String name) {
+        return categoryRepository.findByName(name);
+    }
+
     public void deleteById(Long id) {
         categoryRepository.deleteById(id);
+    }
+
+    public void deleteByName(String name) {
+        categoryRepository.deleteByName(name);
     }
 
     public void createDefaultMainCategory() {

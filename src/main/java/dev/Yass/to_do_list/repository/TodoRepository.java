@@ -15,4 +15,6 @@ public interface TodoRepository extends JpaRepository<task, Long> {
     List<task> findByArchived(boolean archived);
 
     List<task> findByTitle(String title);
+
+    List<task> deleteByTitle(String title);
 }

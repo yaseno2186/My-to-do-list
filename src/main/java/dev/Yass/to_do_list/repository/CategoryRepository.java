@@ -6,5 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Categories, Long> {
+
+    Categories findByName(String name);
+
+    void deleteByName(String name);
     // You can add custom query methods here if needed
 }
