@@ -35,3 +35,8 @@ build/
 .mvnw
 
 .env
+
+/User
+/UserService
+/UserController
+/UserRepository

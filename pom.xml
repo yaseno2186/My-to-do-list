@@ -15,7 +15,10 @@
 	<name>to-do-list</name>
 	<description>To do list</description>
 	<developers>
-		<developer>@yaseno2186</developer>
+		<developer>
+			<id>yasen</id>
+			<name>@yass almardoud</name>
+		</developer>
 	</developers>
 	<scm>
 		<connection/>
@@ -35,6 +38,10 @@
 <!--			<groupId>org.springframework.boot</groupId>-->
 <!--			<artifactId>spring-boot-starter-oauth2-authorization-server</artifactId>-->
 <!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-security</artifactId>
+       	</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

@@ -115,12 +115,6 @@
                   <llm>
                     <model value="openai/gpt-3.5-turbo" />
                     <provider value="OpenAI" />
-                    <tags>
-                      <list>
-                        <option value="gateway" />
-                        <option value="speed" />
-                      </list>
-                    </tags>
                     <title value="GPT-3.5 Turbo" />
                     <usage>
                       <list>
@@ -302,12 +296,6 @@
                   <llm>
                     <model value="openai/gpt-3.5-turbo" />
                     <provider value="OpenAI" />
-                    <tags>
-                      <list>
-                        <option value="gateway" />
-                        <option value="speed" />
-                      </list>
-                    </tags>
                     <title value="GPT-3.5 Turbo" />
                     <usage>
                       <list>
@@ -324,12 +312,6 @@
                   <llm>
                     <model value="openai/gpt-3.5-turbo" />
                     <provider value="OpenAI" />
-                    <tags>
-                      <list>
-                        <option value="gateway" />
-                        <option value="speed" />
-                      </list>
-                    </tags>
                     <title value="GPT-3.5 Turbo" />
                     <usage>
                       <list>
@@ -360,6 +342,38 @@
                   </list>
                 </messages>
                 <updatedAt value="2024-08-08T23:27:22.3665639" />
+              </chat>
+              <chat>
+                <internalId value="f8eeb50a-3a03-49b9-bbec-0eff108cf0df" />
+                <llm>
+                  <llm>
+                    <model value="openai/gpt-3.5-turbo" />
+                    <provider value="OpenAI" />
+                    <title value="GPT-3.5 Turbo" />
+                    <usage>
+                      <list>
+                        <option value="chat" />
+                        <option value="edit" />
+                      </list>
+                    </usage>
+                  </llm>
+                </llm>
+              </chat>
+              <chat>
+                <internalId value="5a3da0ff-4ba9-46a5-8466-12f82edbc0fb" />
+                <llm>
+                  <llm>
+                    <model value="openai/gpt-3.5-turbo" />
+                    <provider value="OpenAI" />
+                    <title value="GPT-3.5 Turbo" />
+                    <usage>
+                      <list>
+                        <option value="chat" />
+                        <option value="edit" />
+                      </list>
+                    </usage>
+                  </llm>
+                </llm>
               </chat>
             </list>
           </chats>

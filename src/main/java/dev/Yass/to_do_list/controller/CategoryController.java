@@ -14,7 +14,7 @@ import java.util.Optional;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService; // Assuming you have a CategoryService
+    private CategoryService categoryService;
 
     @PostMapping("/create")
     public Categories createCategory(@RequestBody Categories category) {
@@ -43,7 +43,7 @@ public class CategoryController {
         categoryService.deleteById(id);
     }
 
-    @PutMapping(value = {"/Rename/{id}", "/Rename/{name}"})
+    @PutMapping(value = {"/rename/{id}", "/rename/{name}"})
     public Categories updateCategoryName(@PathVariable String name, @RequestParam String newName, @RequestParam Long id) {
         if (id == 0) {
             Categories category = categoryService.findByName(name);
