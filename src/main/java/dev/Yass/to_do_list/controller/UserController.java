@@ -1,5 +1,6 @@
 package dev.Yass.to_do_list.controller;
 
+import ch.qos.logback.core.boolex.EvaluationException;
 import dev.Yass.to_do_list.model.User;
 import dev.Yass.to_do_list.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -26,18 +27,19 @@ public class UserController {
     public ResponseEntity<?> registerUser(@RequestBody Map<String, String> requestBody) {
         String username = requestBody.get("username");
         String password = requestBody.get("password");
+        String email = requestBody.get("email");
 
         // Basic input validation (you should add more robust validation)
         if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
             return ResponseEntity.badRequest().body("Username and password are required");
         }
 
-        User newUser = userService.registerUser(username, password);
+        User newUser = userService.registerUser(username, password, email);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> requestBody) {
+    public ResponseEntity<?> loginUser(@RequestBody Map<String, String> requestBody) throws EvaluationException {
         String username = requestBody.get("username");
         String password = requestBody.get("password");
 

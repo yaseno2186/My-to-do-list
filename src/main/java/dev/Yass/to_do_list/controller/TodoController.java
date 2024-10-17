@@ -5,18 +5,18 @@ import dev.Yass.to_do_list.service.TodoService;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/task")
+@RequestMapping("/api/todos")
 public class TodoController {
 
     @Autowired
     private TodoService todoService;
-
     @GetMapping("/all")
         public List<task> getAllTodos() {
         return todoService.findAll();

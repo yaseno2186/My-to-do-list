@@ -55,7 +55,7 @@ public class TodoControllerTest {
     void testGetAllTodos() throws Exception {
         when(todoService.findAll()).thenReturn(Arrays.asList(testTask));
 
-        mockMvc.perform(get("/api/task/all"))
+        mockMvc.perform(get("/api/todos/all"))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$[0].id").value(1))
                .andExpect(jsonPath("$[0].title").value("Test Task"));
@@ -65,7 +65,7 @@ public class TodoControllerTest {
     void testGetTodoById() throws Exception {
         when(todoService.findById(1L)).thenReturn(Optional.of(testTask));
 
-        mockMvc.perform(get("/api/task/1"))
+        mockMvc.perform(get("/api/todos/1"))
                .andExpect(status().isOk())
                .andExpect(jsonPath("$.id").value(1))
                .andExpect(jsonPath("$.title").value("Test Task"));
@@ -75,7 +75,7 @@ public class TodoControllerTest {
     void testGetTodoByIdNotFound() throws Exception {
         when(todoService.findById(1L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/api/task/1"))
+        mockMvc.perform(get("/api/todos/1"))
                .andExpect(status().isNotFound());
     }
 
@@ -83,7 +83,7 @@ public class TodoControllerTest {
     void testCreateTodo() throws Exception {
         when(todoService.save(any(task.class))).thenReturn(testTask);
 
-        mockMvc.perform(post("/api/task/create")
+        mockMvc.perform(post("/api/todos/create")
                .contentType(MediaType.APPLICATION_JSON)
                .content(objectMapper.writeValueAsString(testTask)))
                .andExpect(status().isOk())
@@ -113,7 +113,7 @@ public class TodoControllerTest {
         when(todoService.findById(1L)).thenReturn(Optional.of(testTask));
         when(todoService.save(any(task.class))).thenReturn(updatedTask);
 
-        mockMvc.perform(put("/api/task/1")
+        mockMvc.perform(put("/api/todos/1")
                .contentType(MediaType.APPLICATION_JSON)
                .content(objectMapper.writeValueAsString(updatedTask)))
                .andExpect(status().isOk())
@@ -126,7 +126,7 @@ public class TodoControllerTest {
     void testUpdateTodoNotFound() throws Exception {
         when(todoService.findById(1L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(put("/api/task/1")
+        mockMvc.perform(put("/api/todos/1")
                .contentType(MediaType.APPLICATION_JSON)
                .content(objectMapper.writeValueAsString(testTask)))
                .andExpect(status().isNotFound());
@@ -136,7 +136,7 @@ public class TodoControllerTest {
     void testDeleteTodoById() throws Exception {
         when(todoService.findById(1L)).thenReturn(Optional.of(testTask));
 
-        mockMvc.perform(delete("/api/task/1"))
+        mockMvc.perform(delete("/api/todos/1"))
                .andExpect(status().isOk());
 
         verify(todoService, times(1)).deleteById(1L);
@@ -146,7 +146,7 @@ public class TodoControllerTest {
     void testDeleteTodoByIdNotFound() throws Exception {
         when(todoService.findById(1L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(delete("/api/task/1"))
+        mockMvc.perform(delete("/api/todos/1"))
                .andExpect(status().isNotFound());
 
         verify(todoService, never()).deleteById(anyLong());

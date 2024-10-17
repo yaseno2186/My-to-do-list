@@ -1,5 +1,7 @@
 package dev.Yass.to_do_list.service;
 
+import ch.qos.logback.core.boolex.EvaluationException;
+import ch.qos.logback.core.boolex.Matcher;
 import dev.Yass.to_do_list.model.User;
 import dev.Yass.to_do_list.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,21 +11,17 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private UserRepository userRepository;
+    private Matcher passwordEncoder;
 
-    public Optional<User> loginUser(String username, String password) {
+    public Optional<User> loginUser(String username, String password) throws EvaluationException {
         Optional<User> optionalUser = userRepository.findByUsername(username);
 
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             // Compare the provided password with the stored hashed password
-            if (passwordEncoder.matches(password, user.getPassword())) {
+            if (passwordEncoder.matches(password)) {
                 return optionalUser; // Login successful
             }
         }
@@ -31,9 +29,9 @@ public class UserService {
         return Optional.empty(); // Login failed
     }
 
-    public User registerUser(String username, String password) {
+    public User registerUser(String username, String password, String email) {
         // Hash the password before saving
-        String hashedPassword = passwordEncoder.encode(password);
+        String hashedPassword = ((PasswordEncoder) passwordEncoder).encode(password);
         User newUser = new User(username, hashedPassword);
         return userRepository.save(newUser);
     }

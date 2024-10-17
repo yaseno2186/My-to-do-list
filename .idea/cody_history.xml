@@ -379,15 +379,17 @@
           </chats>
           <defaultLlm>
             <llm>
-              <model value="openai/gpt-3.5-turbo" />
-              <provider value="OpenAI" />
+              <model value="anthropic/claude-3-5-sonnet-20240620" />
+              <provider value="Anthropic" />
               <tags>
                 <list>
                   <option value="gateway" />
-                  <option value="speed" />
+                  <option value="power" />
+                  <option value="recommended" />
+                  <option value="free" />
                 </list>
               </tags>
-              <title value="GPT-3.5 Turbo" />
+              <title value="Claude 3.5 Sonnet" />
               <usage>
                 <list>
                   <option value="chat" />
